@@ -97,7 +97,7 @@ abstract class Kohana_Controller
 	 * @param   mixed   $value
 	 * @return  mixed
 	 */
-	public function __set( $key,$value )
+	public function __set($key, $value)
 	{
 		return $this->__context[$key] = $value;
 	}
@@ -110,10 +110,8 @@ abstract class Kohana_Controller
 	 */
 	public function before()
 	{
-
 		// Load the path that points to the view (if applicable)
-		$this->_set_template_path( $this->request->controller(), $this->request->action(), 'html' );
-
+		$this->_set_template_path( $this->request->controller(), $this->request->action(), 'html');
 	}
 
 	/**
@@ -124,11 +122,11 @@ abstract class Kohana_Controller
 	public function after()
 	{
 		// Output the template automatically (if applicable)
-		if((bool)$this->_template_path)
+		if ((bool)$this->_template_path)
 		{
-			if((bool)$this->_auto_render)
+			if ((bool)$this->_auto_render)
 			{
-				$this->response->body( Twig::factory($this->_template_path, $this->__context, $this->_environment)->render() );
+				$this->response->body( Twig::factory($this->_template_path, $this->__context, $this->_environment)->render());
 			}
 		}
 
@@ -145,12 +143,12 @@ abstract class Kohana_Controller
 	 * @usedby  $this->before
 	 * @return  bool  This boolean determines whether the file exists or not
 	 */
-	protected function _set_template_path($path,$file,$extension="html")
+	protected function _set_template_path($path, $file, $extension="html")
 	{
-		$exists = Kohana::find_file("views".DIRECTORY_SEPARATOR.$path,$file,$extension);
-		if( $exists )
+		$exists = Kohana::find_file("views" . DIRECTORY_SEPARATOR . $path, $file, $extension);
+		if ($exists)
 		{
-			$this->_template_path = $path.DIRECTORY_SEPARATOR.$file.".".$extension;
+			$this->_template_path = $path .DIRECTORY_SEPARATOR. $file .".". $extension;
 		}
 		return $exists;
 	}
