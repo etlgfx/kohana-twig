@@ -14,6 +14,31 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 	protected $cache;
 
 	/**
+	 * String default file extension
+	 * @var string
+	 */
+	protected $extension = 'twig';
+
+	/**
+	 * array options
+	 * @var array
+	 */
+	protected $options;
+
+	public function __construct(array $options = null, $extension = null)
+	{
+		if ($options && is_array($options))
+		{
+			$this->options = $options;
+		}
+
+		if ($extension && is_string($extension))
+		{
+			$this->extension = $extension;
+		}
+	}
+
+	/**
 	 * Gets the source code of a template, given its name.
 	 *
 	 * @param  string $name The name of the template to load
@@ -62,8 +87,10 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 		// File details
 		$file = pathinfo($name);
 
+		$extension = isset($file['extension']) ? $file['extension'] : $this->extension;
+
 		// Full path to the file.
-		$path = Kohana::find_file('views', $file['dirname'].DIRECTORY_SEPARATOR.$file['filename'], $file['extension']);
+		$path = Kohana::find_file('views', $file['dirname'].DIRECTORY_SEPARATOR.$file['filename'], $extension);
 
 		if (FALSE === $path)
 		{

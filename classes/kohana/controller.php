@@ -111,7 +111,7 @@ abstract class Kohana_Controller
 	public function before()
 	{
 		// Load the path that points to the view (if applicable)
-		$this->_set_template_path( $this->request->controller(), $this->request->action(), 'html');
+		$this->_set_template_path( $this->request->controller(), $this->request->action(), 'twig');
 	}
 
 	/**
@@ -143,7 +143,7 @@ abstract class Kohana_Controller
 	 * @usedby  $this->before
 	 * @return  bool  This boolean determines whether the file exists or not
 	 */
-	protected function _set_template_path($path, $file, $extension="html")
+	protected function _set_template_path($path, $file, $extension = "twig")
 	{
 		$exists = Kohana::find_file("views" . DIRECTORY_SEPARATOR . $path, $file, $extension);
 		if ($exists)
