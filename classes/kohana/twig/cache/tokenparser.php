@@ -21,7 +21,7 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
 
 		// Format of tag should be {% cache 'name' %}Example Text{% endcache %}
 		$key = $this->parser->getExpressionParser()->parseExpression();
-		
+
 		// Check for arguments for the lifetime
 		if ($this->parser->getStream()->test(Twig_Token::OPERATOR_TYPE, ','))
 		{
@@ -32,7 +32,7 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
 		{
 			$lifetime = FALSE;
 		}
-		
+
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
 		// Grab the body until an endblock is found
@@ -52,7 +52,7 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
 	{
 		return 'cache';
 	}
-	
+
 	/**
 	 * Decides when an endtag has been found for block
 	 *

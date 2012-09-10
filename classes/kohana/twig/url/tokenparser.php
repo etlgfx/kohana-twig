@@ -30,12 +30,12 @@ class Kohana_Twig_URL_TokenParser extends Twig_TokenParser
 		{
 			$params = FALSE;
 		}
-				
+
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
 		return new Kohana_Twig_URL_Node(array('route' => $route, 'params' => $params), array(), $lineno, $this->getTag());
 	}
-	
+
 	/**
 	 * @return string
 	 * @author Jonathan Geiger

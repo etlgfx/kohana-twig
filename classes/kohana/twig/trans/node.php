@@ -25,7 +25,7 @@ class Kohana_Twig_Trans_Node extends Twig_Node
 			->write('echo __(trim(')
 			->subcompile($msg)
 			->write('), array(');
-		
+
 		foreach ($vars as $var) 
 		{
 			$compiler
@@ -34,7 +34,7 @@ class Kohana_Twig_Trans_Node extends Twig_Node
 				->subcompile($var)
 				->raw(', ');
 		}
-		
+
 		$compiler->raw("));\n");
 	}
 

@@ -2,17 +2,17 @@
 
 /**
  * Token parser for the trans tag.
- * 
+ *
  * Both block styles are allowed:
- * 
+ *
  *     {% trans "String to translate" %}
- * 
+ *
  *     {% trans %}
  *         String to translate
  *     {% endtrans %}
- * 
+ *
  * The body of the tag will be trim()ed before being passed to __().
- * 
+ *
  * @package kohana-twig
  */
 class Kohana_Twig_Trans_TokenParser extends Twig_TokenParser
@@ -29,21 +29,21 @@ class Kohana_Twig_Trans_TokenParser extends Twig_TokenParser
 		$stream = $this->parser->getStream();
 
 		// Allow passing only an expression without an endblock
-		if ( ! $stream->test(Twig_Token::BLOCK_END_TYPE)) 
+		if ( ! $stream->test(Twig_Token::BLOCK_END_TYPE))
 		{
 			$body = $this->parser->getExpressionParser()->parseExpression();
 		}
-		else 
+		else
 		{
 			$stream->expect(Twig_Token::BLOCK_END_TYPE);
 			$body = $this->parser->subparse(array($this, 'decideForEnd'), true);
 		}
 
 		$stream->expect(Twig_Token::BLOCK_END_TYPE);
-		
+
 		// Sanity check the body
 		$this->check_trans_string($body, $lineno);
-		
+
 		// Pass it off to the compiler
 		return new Kohana_Twig_Trans_Node(array('body' => $body), array(), $lineno, $this->getTag());
 	}
@@ -71,14 +71,14 @@ class Kohana_Twig_Trans_TokenParser extends Twig_TokenParser
 	/**
 	 * Ensures only "simple" vars are in the body to be translated.
 	 *
-	 * @param Twig_NodeInterface $body 
-	 * @param string $lineno 
+	 * @param Twig_NodeInterface $body
+	 * @param string $lineno
 	 * @return void
 	 * @author Tiger Advertising
 	 */
 	protected function check_trans_string(Twig_NodeInterface $body, $lineno)
 	{
-		foreach ($body as $i => $node) 
+		foreach ($body as $i => $node)
 		{
 			if (
 				$node instanceof Twig_Node_Text

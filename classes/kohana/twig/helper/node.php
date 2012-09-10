@@ -16,10 +16,10 @@ class Kohana_Twig_Helper_Node extends Twig_Node
 	public function compile(Twig_Compiler $compiler)
 	{
 		$params = $this->getNode('expression')->getIterator();
-	
+
 		// Output the route		
 		$compiler->write('echo '.$this->getNodeTag().'::'.$this->getAttribute('method').'(');
-		
+
 		foreach($params as $i => $row)
 		{
 			$compiler->subcompile($row);
@@ -29,7 +29,7 @@ class Kohana_Twig_Helper_Node extends Twig_Node
 				$compiler->write(',');
 			}
 		}
-		
+
 		$compiler->write(')')->raw(';');
 	}
 }

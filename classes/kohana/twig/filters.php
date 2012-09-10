@@ -20,7 +20,7 @@ class Kohana_Twig_Filters
 	{
 		return $number.num::ordinal($number);
 	}
-	
+
 	/**
 	 * Returns the time since a particular time
 	 *
@@ -40,7 +40,7 @@ class Kohana_Twig_Filters
 			array(60 * 60 ,  __('hour')),
 			array(60 ,  __('minute')),
 		);
-		
+
 		// Convert to a unix timestamp
 		$older_date = !is_numeric($older_date) ? strtotime($older_date) : $older_date;
 
@@ -59,7 +59,7 @@ class Kohana_Twig_Filters
 
 		// step one: the first chunk
 		for ($i = 0, $j = count($chunks); $i < $j; $i++)
-			{
+		{
 			$seconds = $chunks[$i][0];
 			$name = $chunks[$i][1];
 
@@ -75,7 +75,7 @@ class Kohana_Twig_Filters
 
 		// step two: the second chunk
 		if ($i + 1 < $j)
-			{
+		{
 			$seconds2 = $chunks[$i + 1][0];
 			$name2 = $chunks[$i + 1][1];
 

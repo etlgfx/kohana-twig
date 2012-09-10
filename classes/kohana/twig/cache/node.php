@@ -13,19 +13,19 @@ class Kohana_Twig_Cache_Node extends Twig_Node
 	 * @var object
 	 */
 	protected $key;
-	
+
 	/**
 	 * The data to cache
 	 * @var object
 	 */
 	protected $data;
-	
+
 	/**
 	 * The cache lifetime
 	 * @var object
 	 */
 	protected $lifetime;
-	
+
 	/**
 	 * @param object $compiler 
 	 * @return void
@@ -36,7 +36,7 @@ class Kohana_Twig_Cache_Node extends Twig_Node
 		$compiler
 			->write('if (!fragment::load(')
 			->subcompile($this->getNode('key'));
-		
+
 		// Lifetime will be false if it wasn't parsed
 		if ($this->lifetime)
 		{
@@ -50,7 +50,7 @@ class Kohana_Twig_Cache_Node extends Twig_Node
 			$compiler 
 				->write(')) {');
 		}
-			
+
 		$compiler
 			->raw("\n")
 			->subcompile($this->getNode('data'))
