@@ -79,6 +79,8 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 	 */
 	protected function findTemplate($name)
 	{
+		$name = ltrim($name, './');
+
 		if (isset($this->cache[$name]))
 		{
 			return $this->cache[$name];
@@ -91,6 +93,8 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 
 		// Full path to the file.
 		$path = Kohana::find_file('views', $file['dirname'].DIRECTORY_SEPARATOR.$file['filename'], $extension);
+
+
 
 		if (FALSE === $path)
 		{
